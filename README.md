@@ -1,45 +1,149 @@
-Giveitem log for ESX & ox_inventory
-This script for FiveM servers running the ESX framework with ox_inventory logs the usage of the administrative command /giveitem and sends detailed records to your chosen Discord webhook.
+🟢 **Avoxv GiveItem Logs**
 
-Ingame chat
+A simple FiveM ESX server-side command that allows admins to give items to players and automatically logs all actions to Discord via webhook.
 
-Features
-Logs the usage of the /giveitem command.
-Sends logs to a Discord webhook in real-time.
-Formats logs into clear Discord embeds (includes admin, target, item, count, and timestamp).
-Checks for successful item addition via ox_inventory before logging to Discord.
-Configurable Discord webhook URL via server.cfg.
-Warning message in the server console on startup if the webhook URL is not set.
-Requirements
-ESX Framework: A compatible version (e.g., ESX Legacy 1.9.0+).
-ox_inventory: A working installation of ox_inventory.
-ox_lib: A working installation of ox_lib (required by ox_inventory and for JSON functions).
-Server: Must have Lua 5.4 enabled (see fxmanifest.lua of this resource).
-Installation
-Download or clone the files for this script (giveitem_log_sv.lua, fxmanifest.lua, README.md).
-Create a folder for the resource in your server's resources directory (e.g., [logs]/avoxv_giveitemlog). Ensure the folder name contains no spaces or special characters.
-Place the downloaded files (giveitem_log_sv.lua, fxmanifest.lua, README.md) into this newly created folder.
-Ensure you have installed and started all Requirements (ESX, ox_inventory, ox_lib).
-Add the following line to your server.cfg file:
-set avoxv_giveitemlog "YOUR_DISCORD_WEBHOOK_URL_HERE"
-Restart your FiveM server.
-Configuration
-Discord Webhook URL
-For logs to be sent to Discord, you must set up a valid webhook URL.
+Built for ESX Legacy (es_extended) servers.
 
-Create a Webhook on your Discord server (Server Settings -> Integrations -> Webhooks -> New Webhook).
-Copy the Webhook URL.
-Open your server.cfg and add (or edit) the following line. Replace YOUR_DISCORD_WEBHOOK_URL_HERE with your actual URL:
-set avoxv_giveitemlog "YOUR_DISCORD_WEBHOOK_URL_HERE"
+📦 **Features**
 
-If this value is not set correctly, the script will print a warning on startup, and Discord logging will be disabled.
+✅ Admin-only /giveitem command
 
-Usage
-After correct installation and configuration, players with the command.giveitem permission can use the command in the game chat:
+✅ Gives items directly to a player’s inventory
 
-/giveitem [Player ID] [Item Name] [Count]
+✅ Sends detailed logs to Discord
 
-[Player ID]: The server ID of the player you want to give the item to (visible in the player list, etc.).
-[Item Name]: The exact item spawn code known by your ox_inventory system (e.g., water, bandage, weapon_pistol).
-[Count]: A positive integer specifying the quantity.
-Every successful use of the command (i.e., when ox_inventory successfully adds the item) will be logged to the server console and also sent as a formatted embed message to your Discord webhook. If adding the item fails (e.g., full inventory), the action will only be logged to the server console with the reason for failure.
+✅ Logs include:
+
+- Admin name & server ID
+
+- Admin license
+
+- Target player name & ID
+
+- Target license
+
+- Item name
+
+- Amount given
+
+- Timestamp
+
+🔧 **Requirements**
+
+- Cfx.re FiveM Server
+
+- ESX (es_extended)
+
+📥 **Installation**
+
+**1.** Place the Avoxv_Giveitemlogs script in your ``resources`` folder.
+**2.** Add this to your ``server.cfg``:
+
+ensure Avoxv_Giveitemlogs
+
+**3.** Open the script and replace:
+
+local webhook = "YOUR_DISCORD_WEBHOOK_URL"
+
+With your actual Discord webhook URL.
+
+**4.** Restart your server.
+
+🖥️ **Usage**
+
+Code:
+/giveitem [id] [item] [amount]
+
+This will:
+
+- Give player ID 1 → Items
+
+- Send a detailed log to Discord
+
+🔐 **Permissions**
+
+To grant permission in ``server.cfg``:
+
+add_ace group.admin command.giveitem allow
+
+📊 **Discord Log Preview**
+
+The webhook sends an embed formatted like:
+
+🟢 Avoxv Giveitem Logs
+
+Admin: Name (ID)
+Admin License: license:xxxxxxx
+
+Target: Name (ID)
+Target License: license:xxxxxxx
+
+Item: Money
+Amount: 250
+
+With automatic timestamp in the footer.
+
+🛠️ **Customization**
+
+You can modify:
+
+- Embed color
+``65280`` → Change to any decimal color value
+
+- Embed title
+"🟢 Avoxv Giveitem Logs"
+
+- Webhook username
+"Avoxv GiveItem Logs"
+
+⚠️ **Notes**
+
+- Make sure the item exists in your ESX database.
+
+- This script does not check item validity — invalid items may cause errors.
+
+- Recommended to restrict usage to high-level staff only.
+
+
+📜 **License**
+
+Free to use and modify.
+Do not resell as it's free.
+
+📦 **Ace Permissions Configuration**
+
+This resource allows you to configure which Ace Permission groups are allowed to access specific features in avoxv_giveitemlog script.
+
+⚙️ **Configuration**
+
+Edit the config.lua file and add your Ace permission groups inside the Config.AllowedGroups table.
+
+Config = {}
+
+-- Place Ace Perms groups below
+Config.AllowedGroups = {
+    "PUT_GROUP_HERE", 
+    "PUT_GROUP_HERE"
+}
+
+🛠 **How It Works**
+
+- The script checks if a player belongs to one of the groups listed in Config.AllowedGroups.
+- If the player’s Ace permission group matches any entry in the table, they will be granted access.
+- If not, access will be denied.
+
+Config = {}
+
+Config.AllowedGroups = {
+    "admin",
+    "moderator",
+    "superadmin" -- Groups are Changeable
+}
+
+📌 **Notes**
+
+- Make sure your Ace permissions are properly configured in your ``server.cfg``.
+
+- Group names are case-sensitive.
+
+- Do not leave ``"PUT_GROUP_HERE"`` in production — replace it with actual group names.

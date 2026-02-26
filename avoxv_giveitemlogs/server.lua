@@ -6,7 +6,7 @@ local webhook = "YOUR_DISCORD_WEBHOOK_URL"
 -- 🔹 Discord function
 local function SendToDiscord(title, message, color)
     PerformHttpRequest(webhook, function(err, text, headers) end, 'POST', json.encode({
-        username = "GiveItem Logs",
+        username = "Avoxv GiveItem Logs", -- Keep my Credit
         embeds = {{
             title = title,
             description = message,

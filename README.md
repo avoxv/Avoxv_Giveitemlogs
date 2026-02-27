@@ -1,4 +1,4 @@
-For support, scripts, and more. https://discord.gg/q4pCAqt34J
+**__For support, scripts, and more.__** https://discord.gg/q4pCAqt34J
 
 🟢 **Avoxv GiveItem Logs**
 

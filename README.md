@@ -1,3 +1,5 @@
+For Support https://discord.gg/q4pCAqt34J
+
 🟢 **Avoxv GiveItem Logs**
 
 A simple FiveM ESX server-side command that allows admins to give items to players and automatically logs all actions to Discord via webhook.

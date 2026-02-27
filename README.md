@@ -1,4 +1,5 @@
-**__For support, scripts, and more.__** https://discord.gg/q4pCAqt34J
+# Support
+Join our discord <a href='https://discord.gg/q4pCAqt34J'>HERE</a> for additional scripts and support!
 
 🟢 **Avoxv GiveItem Logs**
 
